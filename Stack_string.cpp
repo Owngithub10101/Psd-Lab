@@ -55,12 +55,13 @@ class Stack{
 };
 
 int main(){
-    Stack o;
-    o.push();
-    o.print();
+             // Or...
+    Stack o; // Stack *o = new Stack();
+    o.push(); // o->push();
+    o.print(); // o->print();
     cout << "------" << endl;
-    o.pop();
-    o.pop();
-    o.print();
+    o.pop(); // o->pop();
+    o.pop(); // o->pop();
+    o.print(); // o->print();
     return 0;
 }
