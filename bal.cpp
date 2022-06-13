@@ -46,22 +46,33 @@ class Stack{
 				temp = temp->next;
 			}
 		}
+        bool isempty(){
+            if(top == NULL) return true; 
+            else return false;
+        }
 		void Balencing(string s){
 			int x = s.length();
 			int ct = 0;
+            if(!s.length()) {
+                cout << "Empty String.." << endl;
+                return;
+            }
 			for(int i = 0; i < x; ++i){
-				if(s[i]=='[' || s[i]=='{' || s[i]=='('){
-	        		push(s[i]);
-	        		ct++;
-				}else if((s[i]==']' && s[i-1]=='[') || (s[i]=='}' && s[i-1]=='{') || (s[i]==')'&& s[i-1]=='(')){
-					Pop();
-					ct--;
-				}else{
-					push(s[i]);
-					ct++;
-				}
-			}
-			if(!ct) cout << "String is balenced.." << "\n";
+                if(s[i]=='[' || s[i]=='{' || s[i]=='(') {push(s[i]); ct++;}
+                if(s[i]==']' || s[i]=='}' || s[i]==')'){
+                    if(isempty()){
+                        cout << "Unbalenced.." << endl; 
+                        return;
+                    }
+                    else{
+                        if(s[i]==']' && top->data=='[') {Pop(); ct--;}
+                        else if(s[i]=='}' && top->data=='{') {Pop(); ct--;}
+                        else if(s[i]==')'&& top->data=='(') {Pop(); ct--;}
+                    }
+                }
+                
+            }
+			if(ct == 0) cout << "String is balenced.." << "\n";
 			else cout << "Unbalenced.." << "\n";
 		}
 };
